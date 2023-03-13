@@ -1,7 +1,7 @@
 from datetime import date
 from typing import List
 
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, validator, Field
 
 
 class Genre(BaseModel):
@@ -19,12 +19,14 @@ class Book(BaseModel):
 
 
 class Author(BaseModel):
-    first_name: str
+    first_name: str = Field(..., max_length=25)
     last_name: str
-    age: int
+    age: int = Field(
+        ..., gt=15, lt=120, description="Author must be more than 15 and less than 120"
+    )
 
-    @validator("age")
-    def check_age(cls, v):
-        if v < 15:
-            raise ValueError("Bla bla bla")
-
+    # @validator("age")
+    # def check_age(cls, v):
+    #     if v < 15 > 90:
+    #         raise ValueError("Автор должен быть старше 15 лет)")
+    #     return v
