@@ -7,9 +7,14 @@ from schemas import Book, Author
 app = FastAPI()
 
 
-@app.post('/book/create/')
-def create_book(item: Book, author: Author, quantity: int = Body(...)):
-    return {"book": item, "author": author}
+@app.post(
+    '/book/create/',
+    response_model=Book,
+    response_model_exclude_unset=False,
+    response_model_exclude={"pages", "date"}
+)
+def create_book(item: Book):
+    return item
 
 
 @app.post('/author/create/')
