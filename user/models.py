@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, DateTime, Boolean
+from sqlalchemy import Column, String, Integer, DateTime
 
 from core.db import Base
 
@@ -9,7 +9,5 @@ class User(Base):
     id = Column(Integer, primary_key=True, unique=True, index=True)
     username = Column(String, unique=True)
     email = Column(String, unique=True)
-    password = Column(String)
     date = Column(DateTime)
-    is_admin = Column(Boolean, default=False)
-    is_active = Column(Boolean, default=False)
+    password = Column(String(length=25))

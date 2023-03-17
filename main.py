@@ -1,13 +1,17 @@
-from typing import List
-
-from fastapi import FastAPI, Query, Path, Body
+import uvicorn
+from fastapi import FastAPI
 from starlette.requests import Request
-from starlette.responses import Response
+from starlette.responses import Response, JSONResponse
+from starlette.middleware import Middleware
 
 from core.db import SessionLocal
 from routes import router
 
 app = FastAPI()
+
+
+def on_auth_error(request: Request, exc: Exception):
+    return JSONResponse({"error": str(exc)}, status_code=401)
 
 
 @app.middleware("http")
@@ -22,3 +26,6 @@ async def db_session_middleware(request: Request, call_next):
 
 
 app.include_router(router)
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", reload=True)
