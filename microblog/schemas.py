@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import List
 
 from pydantic import BaseModel
 
@@ -23,4 +22,4 @@ class PostCreate(PostBase):
     title: str
     text: str
     date: datetime
-    user: User
+    # user: User
