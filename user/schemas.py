@@ -18,6 +18,11 @@ class UserCreate(BaseModel):
         }
 
 
+class UserInfo(UserCreate):
+    id: int
+    date: datetime
+
+
 class UserLogin(BaseModel):
     email: EmailStr
     password: str

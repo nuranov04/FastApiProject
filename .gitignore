@@ -1,6 +1,7 @@
-.idea
+.idea/
+.env
+/auth/.env
 idea
 .__pychache__
 env/
 __pycache__/
-.env

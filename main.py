@@ -2,12 +2,13 @@ import uvicorn
 from fastapi import FastAPI
 from starlette.requests import Request
 from starlette.responses import Response, JSONResponse
-from starlette.middleware import Middleware
 
 from core.db import SessionLocal
 from routes import router
 
-app = FastAPI()
+app = FastAPI(
+    title="Blog Api"
+)
 
 
 def on_auth_error(request: Request, exc: Exception):

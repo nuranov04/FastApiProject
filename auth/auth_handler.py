@@ -2,10 +2,12 @@ import time
 
 from typing import Dict
 
+from decouple import config
+
 import jwt
 
-JWT_SECRET = "wewqe123"
-JWT_ALGORITHM = "HS256"
+JWT_SECRET = config("JWT_SECRET")
+JWT_ALGORITHM = config("JWT_ALGORITHM")
 
 
 def token_response(token: str):

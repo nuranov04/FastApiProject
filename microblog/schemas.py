@@ -11,6 +11,15 @@ class PostBase(BaseModel):
         orm_mode = True
 
 
+class SinglePost(PostBase):
+    id: int
+    date: datetime
+    user: int
+
+    class Config:
+        orm_mode = True
+
+
 class PostList(PostBase):
     id: int
     user: int
@@ -18,4 +27,4 @@ class PostList(PostBase):
 
 class PostCreate(PostBase):
     date: datetime
-    user_id: int
+    user: int
